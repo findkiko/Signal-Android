@@ -125,7 +125,11 @@ public class ThreadRecord extends DisplayRecord {
   }
 
   public long getDate() {
-    return getDateReceived();
+    if (SmsDatabase.Types.isMissedCall(type)) {
+      return getDateSent();
+    } else {
+      return getDateReceived();
+    }
   }
 
   public boolean isArchived() {
